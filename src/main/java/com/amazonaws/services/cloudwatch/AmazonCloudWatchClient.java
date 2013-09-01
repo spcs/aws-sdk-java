@@ -84,7 +84,7 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
 
     
     /** AWS signer for authenticating requests. */
-    private AWS4Signer signer;
+    private QueryStringSigner signer;
 
 
     /**
@@ -218,10 +218,7 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
         exceptionUnmarshallers.add(new StandardErrorUnmarshaller());
         setEndpoint("monitoring.amazonaws.com");
 
-        signer = new AWS4Signer();
-        
-        signer.setServiceName("monitoring");
-        
+        signer = new QueryStringSigner();
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
 		requestHandlers.addAll(chainFactory.newRequestHandlerChain(
@@ -735,8 +732,6 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
      */
     public void setEndpoint(String endpoint, String serviceName, String regionId) throws IllegalArgumentException {
         setEndpoint(endpoint);
-        signer.setServiceName(serviceName);
-        signer.setRegionName(regionId);
     }
     
     @Override
