@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.cloudsearch.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -33,7 +35,8 @@ public class SourceDataMap implements Serializable {
     private String sourceName;
 
     /**
-     * The value of a field or source document attribute.
+     * The default value to use if the source attribute is not specified in a
+     * document. Optional.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
@@ -98,38 +101,44 @@ public class SourceDataMap implements Serializable {
     
     
     /**
-     * The value of a field or source document attribute.
+     * The default value to use if the source attribute is not specified in a
+     * document. Optional.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @return The value of a field or source document attribute.
+     * @return The default value to use if the source attribute is not specified in a
+     *         document. Optional.
      */
     public String getDefaultValue() {
         return defaultValue;
     }
     
     /**
-     * The value of a field or source document attribute.
+     * The default value to use if the source attribute is not specified in a
+     * document. Optional.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @param defaultValue The value of a field or source document attribute.
+     * @param defaultValue The default value to use if the source attribute is not specified in a
+     *         document. Optional.
      */
     public void setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue;
     }
     
     /**
-     * The value of a field or source document attribute.
+     * The default value to use if the source attribute is not specified in a
+     * document. Optional.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1024<br/>
      *
-     * @param defaultValue The value of a field or source document attribute.
+     * @param defaultValue The default value to use if the source attribute is not specified in a
+     *         document. Optional.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.

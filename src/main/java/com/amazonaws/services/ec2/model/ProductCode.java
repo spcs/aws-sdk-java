@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -65,8 +67,13 @@ public class ProductCode implements Serializable {
     
     /**
      * Returns the value of the ProductCodeType property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>devpay, marketplace
      *
      * @return The value of the ProductCodeType property for this object.
+     *
+     * @see ProductCodeValues
      */
     public String getProductCodeType() {
         return productCodeType;
@@ -74,8 +81,13 @@ public class ProductCode implements Serializable {
     
     /**
      * Sets the value of the ProductCodeType property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>devpay, marketplace
      *
      * @param productCodeType The new value for the ProductCodeType property for this object.
+     *
+     * @see ProductCodeValues
      */
     public void setProductCodeType(String productCodeType) {
         this.productCodeType = productCodeType;
@@ -85,17 +97,56 @@ public class ProductCode implements Serializable {
      * Sets the value of the ProductCodeType property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>devpay, marketplace
      *
      * @param productCodeType The new value for the ProductCodeType property for this object.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see ProductCodeValues
      */
     public ProductCode withProductCodeType(String productCodeType) {
         this.productCodeType = productCodeType;
         return this;
     }
     
+    
+    /**
+     * Sets the value of the ProductCodeType property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>devpay, marketplace
+     *
+     * @param productCodeType The new value for the ProductCodeType property for this object.
+     *
+     * @see ProductCodeValues
+     */
+    public void setProductCodeType(ProductCodeValues productCodeType) {
+        this.productCodeType = productCodeType.toString();
+    }
+    
+    /**
+     * Sets the value of the ProductCodeType property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>devpay, marketplace
+     *
+     * @param productCodeType The new value for the ProductCodeType property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see ProductCodeValues
+     */
+    public ProductCode withProductCodeType(ProductCodeValues productCodeType) {
+        this.productCodeType = productCodeType.toString();
+        return this;
+    }
     
     /**
      * Returns a string representation of this object; useful for testing and

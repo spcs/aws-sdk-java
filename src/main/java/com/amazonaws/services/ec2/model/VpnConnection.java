@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -32,6 +34,9 @@ public class VpnConnection implements Serializable {
      * Describes the current state of the VPN connection. Valid values are
      * <code>pending</code>, <code>available</code>, <code>deleting</code>,
      * and <code>deleted</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>pending, available, deleting, deleted
      */
     private String state;
 
@@ -46,6 +51,9 @@ public class VpnConnection implements Serializable {
 
     /**
      * Specifies the type of VPN connection.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
      */
     private String type;
 
@@ -115,10 +123,15 @@ public class VpnConnection implements Serializable {
      * Describes the current state of the VPN connection. Valid values are
      * <code>pending</code>, <code>available</code>, <code>deleting</code>,
      * and <code>deleted</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>pending, available, deleting, deleted
      *
      * @return Describes the current state of the VPN connection. Valid values are
      *         <code>pending</code>, <code>available</code>, <code>deleting</code>,
      *         and <code>deleted</code>.
+     *
+     * @see VpnState
      */
     public String getState() {
         return state;
@@ -128,10 +141,15 @@ public class VpnConnection implements Serializable {
      * Describes the current state of the VPN connection. Valid values are
      * <code>pending</code>, <code>available</code>, <code>deleting</code>,
      * and <code>deleted</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>pending, available, deleting, deleted
      *
      * @param state Describes the current state of the VPN connection. Valid values are
      *         <code>pending</code>, <code>available</code>, <code>deleting</code>,
      *         and <code>deleted</code>.
+     *
+     * @see VpnState
      */
     public void setState(String state) {
         this.state = state;
@@ -143,6 +161,9 @@ public class VpnConnection implements Serializable {
      * and <code>deleted</code>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>pending, available, deleting, deleted
      *
      * @param state Describes the current state of the VPN connection. Valid values are
      *         <code>pending</code>, <code>available</code>, <code>deleting</code>,
@@ -150,12 +171,56 @@ public class VpnConnection implements Serializable {
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see VpnState
      */
     public VpnConnection withState(String state) {
         this.state = state;
         return this;
     }
     
+    
+    /**
+     * Describes the current state of the VPN connection. Valid values are
+     * <code>pending</code>, <code>available</code>, <code>deleting</code>,
+     * and <code>deleted</code>.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>pending, available, deleting, deleted
+     *
+     * @param state Describes the current state of the VPN connection. Valid values are
+     *         <code>pending</code>, <code>available</code>, <code>deleting</code>,
+     *         and <code>deleted</code>.
+     *
+     * @see VpnState
+     */
+    public void setState(VpnState state) {
+        this.state = state.toString();
+    }
+    
+    /**
+     * Describes the current state of the VPN connection. Valid values are
+     * <code>pending</code>, <code>available</code>, <code>deleting</code>,
+     * and <code>deleted</code>.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>pending, available, deleting, deleted
+     *
+     * @param state Describes the current state of the VPN connection. Valid values are
+     *         <code>pending</code>, <code>available</code>, <code>deleting</code>,
+     *         and <code>deleted</code>.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see VpnState
+     */
+    public VpnConnection withState(VpnState state) {
+        this.state = state.toString();
+        return this;
+    }
     
     /**
      * Contains configuration information in the native XML format for the
@@ -217,8 +282,13 @@ public class VpnConnection implements Serializable {
     
     /**
      * Specifies the type of VPN connection.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
      *
      * @return Specifies the type of VPN connection.
+     *
+     * @see GatewayType
      */
     public String getType() {
         return type;
@@ -226,8 +296,13 @@ public class VpnConnection implements Serializable {
     
     /**
      * Specifies the type of VPN connection.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
      *
      * @param type Specifies the type of VPN connection.
+     *
+     * @see GatewayType
      */
     public void setType(String type) {
         this.type = type;
@@ -237,17 +312,56 @@ public class VpnConnection implements Serializable {
      * Specifies the type of VPN connection.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
      *
      * @param type Specifies the type of VPN connection.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see GatewayType
      */
     public VpnConnection withType(String type) {
         this.type = type;
         return this;
     }
     
+    
+    /**
+     * Specifies the type of VPN connection.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
+     *
+     * @param type Specifies the type of VPN connection.
+     *
+     * @see GatewayType
+     */
+    public void setType(GatewayType type) {
+        this.type = type.toString();
+    }
+    
+    /**
+     * Specifies the type of VPN connection.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
+     *
+     * @param type Specifies the type of VPN connection.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see GatewayType
+     */
+    public VpnConnection withType(GatewayType type) {
+        this.type = type.toString();
+        return this;
+    }
     
     /**
      * Specifies ID of the customer gateway at the end of the VPN connection.

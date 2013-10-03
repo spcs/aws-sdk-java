@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -25,6 +27,9 @@ public class InstanceStatusEvent implements Serializable {
     /**
      * The associated code of the event. Valid values: instance-reboot,
      * system-reboot, instance-retirement
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>instance-reboot, system-reboot, system-maintenance, instance-retirement, instance-stop
      */
     private String code;
 
@@ -46,9 +51,14 @@ public class InstanceStatusEvent implements Serializable {
     /**
      * The associated code of the event. Valid values: instance-reboot,
      * system-reboot, instance-retirement
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>instance-reboot, system-reboot, system-maintenance, instance-retirement, instance-stop
      *
      * @return The associated code of the event. Valid values: instance-reboot,
      *         system-reboot, instance-retirement
+     *
+     * @see EventCode
      */
     public String getCode() {
         return code;
@@ -57,9 +67,14 @@ public class InstanceStatusEvent implements Serializable {
     /**
      * The associated code of the event. Valid values: instance-reboot,
      * system-reboot, instance-retirement
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>instance-reboot, system-reboot, system-maintenance, instance-retirement, instance-stop
      *
      * @param code The associated code of the event. Valid values: instance-reboot,
      *         system-reboot, instance-retirement
+     *
+     * @see EventCode
      */
     public void setCode(String code) {
         this.code = code;
@@ -70,18 +85,61 @@ public class InstanceStatusEvent implements Serializable {
      * system-reboot, instance-retirement
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>instance-reboot, system-reboot, system-maintenance, instance-retirement, instance-stop
      *
      * @param code The associated code of the event. Valid values: instance-reboot,
      *         system-reboot, instance-retirement
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see EventCode
      */
     public InstanceStatusEvent withCode(String code) {
         this.code = code;
         return this;
     }
     
+    
+    /**
+     * The associated code of the event. Valid values: instance-reboot,
+     * system-reboot, instance-retirement
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>instance-reboot, system-reboot, system-maintenance, instance-retirement, instance-stop
+     *
+     * @param code The associated code of the event. Valid values: instance-reboot,
+     *         system-reboot, instance-retirement
+     *
+     * @see EventCode
+     */
+    public void setCode(EventCode code) {
+        this.code = code.toString();
+    }
+    
+    /**
+     * The associated code of the event. Valid values: instance-reboot,
+     * system-reboot, instance-retirement
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>instance-reboot, system-reboot, system-maintenance, instance-retirement, instance-stop
+     *
+     * @param code The associated code of the event. Valid values: instance-reboot,
+     *         system-reboot, instance-retirement
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see EventCode
+     */
+    public InstanceStatusEvent withCode(EventCode code) {
+        this.code = code.toString();
+        return this;
+    }
     
     /**
      * A description of the event.

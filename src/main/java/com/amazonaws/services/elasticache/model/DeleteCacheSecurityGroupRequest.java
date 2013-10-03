@@ -13,16 +13,18 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.elasticache.model;
-import com.amazonaws.AmazonWebServiceRequest;
+
 import java.io.Serializable;
+
+import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.elasticache.AmazonElastiCache#deleteCacheSecurityGroup(DeleteCacheSecurityGroupRequest) DeleteCacheSecurityGroup operation}.
  * <p>
- * Deletes a Cache Security Group.
+ * The <i>DeleteCacheSecurityGroup</i> operation deletes a cache security group.
  * </p>
  * <p>
- * <b>NOTE:</b>The specified Cache Security Group must not be associated with any Cache Clusters.
+ * <b>NOTE:</b>You cannot delete a cache security group if it is associated with any cache clusters.
  * </p>
  *
  * @see com.amazonaws.services.elasticache.AmazonElastiCache#deleteCacheSecurityGroup(DeleteCacheSecurityGroupRequest)
@@ -30,7 +32,7 @@ import java.io.Serializable;
 public class DeleteCacheSecurityGroupRequest extends AmazonWebServiceRequest implements Serializable {
 
     /**
-     * The name of the Cache Security Group to delete. <note>You cannot
+     * The name of the cache security group to delete. <note>You cannot
      * delete the default security group.</note>
      */
     private String cacheSecurityGroupName;
@@ -48,7 +50,7 @@ public class DeleteCacheSecurityGroupRequest extends AmazonWebServiceRequest imp
      * Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      * 
-     * @param cacheSecurityGroupName The name of the Cache Security Group to
+     * @param cacheSecurityGroupName The name of the cache security group to
      * delete. <note>You cannot delete the default security group.</note>
      */
     public DeleteCacheSecurityGroupRequest(String cacheSecurityGroupName) {
@@ -58,10 +60,10 @@ public class DeleteCacheSecurityGroupRequest extends AmazonWebServiceRequest imp
     
     
     /**
-     * The name of the Cache Security Group to delete. <note>You cannot
+     * The name of the cache security group to delete. <note>You cannot
      * delete the default security group.</note>
      *
-     * @return The name of the Cache Security Group to delete. <note>You cannot
+     * @return The name of the cache security group to delete. <note>You cannot
      *         delete the default security group.</note>
      */
     public String getCacheSecurityGroupName() {
@@ -69,10 +71,10 @@ public class DeleteCacheSecurityGroupRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * The name of the Cache Security Group to delete. <note>You cannot
+     * The name of the cache security group to delete. <note>You cannot
      * delete the default security group.</note>
      *
-     * @param cacheSecurityGroupName The name of the Cache Security Group to delete. <note>You cannot
+     * @param cacheSecurityGroupName The name of the cache security group to delete. <note>You cannot
      *         delete the default security group.</note>
      */
     public void setCacheSecurityGroupName(String cacheSecurityGroupName) {
@@ -80,12 +82,12 @@ public class DeleteCacheSecurityGroupRequest extends AmazonWebServiceRequest imp
     }
     
     /**
-     * The name of the Cache Security Group to delete. <note>You cannot
+     * The name of the cache security group to delete. <note>You cannot
      * delete the default security group.</note>
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param cacheSecurityGroupName The name of the Cache Security Group to delete. <note>You cannot
+     * @param cacheSecurityGroupName The name of the cache security group to delete. <note>You cannot
      *         delete the default security group.</note>
      *
      * @return A reference to this updated object so that method calls can be chained 

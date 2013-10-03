@@ -14,11 +14,11 @@
  */
 package com.amazonaws.transform;
 
-import static org.codehaus.jackson.JsonToken.END_ARRAY;
-import static org.codehaus.jackson.JsonToken.END_OBJECT;
-import static org.codehaus.jackson.JsonToken.FIELD_NAME;
-import static org.codehaus.jackson.JsonToken.START_ARRAY;
-import static org.codehaus.jackson.JsonToken.START_OBJECT;
+import static com.fasterxml.jackson.core.JsonToken.END_ARRAY;
+import static com.fasterxml.jackson.core.JsonToken.END_OBJECT;
+import static com.fasterxml.jackson.core.JsonToken.FIELD_NAME;
+import static com.fasterxml.jackson.core.JsonToken.START_ARRAY;
+import static com.fasterxml.jackson.core.JsonToken.START_OBJECT;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,8 +27,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonToken;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 
 import com.amazonaws.http.HttpResponse;
 
@@ -250,7 +250,7 @@ public class JsonUnmarshallerContext {
      * Simple container for the details of a metadata expression this
      * unmarshaller context is looking for.
      */
-    private class MetadataExpression {
+    private static class MetadataExpression {
         public String expression;
         public int targetDepth;
         public String key;

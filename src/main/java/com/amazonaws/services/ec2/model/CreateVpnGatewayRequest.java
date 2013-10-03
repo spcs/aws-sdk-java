@@ -13,10 +13,12 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
+import java.io.Serializable;
+
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Request;
 import com.amazonaws.services.ec2.model.transform.CreateVpnGatewayRequestMarshaller;
-import java.io.Serializable;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#createVpnGateway(CreateVpnGatewayRequest) CreateVpnGateway operation}.
@@ -31,6 +33,9 @@ public class CreateVpnGatewayRequest extends AmazonWebServiceRequest implements 
 
     /**
      * The type of VPN connection this VPN gateway supports.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
      */
     private String type;
 
@@ -61,9 +66,25 @@ public class CreateVpnGatewayRequest extends AmazonWebServiceRequest implements 
     
     
     /**
+     * Constructs a new CreateVpnGatewayRequest object.
+     * Callers should use the setter or fluent setter (with...) methods to
+     * initialize any additional object members.
+     * 
+     * @param type The type of VPN connection this VPN gateway supports.
+     */
+    public CreateVpnGatewayRequest(GatewayType type) {
+        this.type = type.toString();
+    }
+    
+    /**
      * The type of VPN connection this VPN gateway supports.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
      *
      * @return The type of VPN connection this VPN gateway supports.
+     *
+     * @see GatewayType
      */
     public String getType() {
         return type;
@@ -71,8 +92,13 @@ public class CreateVpnGatewayRequest extends AmazonWebServiceRequest implements 
     
     /**
      * The type of VPN connection this VPN gateway supports.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
      *
      * @param type The type of VPN connection this VPN gateway supports.
+     *
+     * @see GatewayType
      */
     public void setType(String type) {
         this.type = type;
@@ -82,17 +108,56 @@ public class CreateVpnGatewayRequest extends AmazonWebServiceRequest implements 
      * The type of VPN connection this VPN gateway supports.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
      *
      * @param type The type of VPN connection this VPN gateway supports.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see GatewayType
      */
     public CreateVpnGatewayRequest withType(String type) {
         this.type = type;
         return this;
     }
     
+    
+    /**
+     * The type of VPN connection this VPN gateway supports.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
+     *
+     * @param type The type of VPN connection this VPN gateway supports.
+     *
+     * @see GatewayType
+     */
+    public void setType(GatewayType type) {
+        this.type = type.toString();
+    }
+    
+    /**
+     * The type of VPN connection this VPN gateway supports.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ipsec.1
+     *
+     * @param type The type of VPN connection this VPN gateway supports.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see GatewayType
+     */
+    public CreateVpnGatewayRequest withType(GatewayType type) {
+        this.type = type.toString();
+        return this;
+    }
     
     /**
      * The Availability Zone in which to create the VPN gateway.

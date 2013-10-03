@@ -33,6 +33,7 @@ import java.util.Random;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.http.AmazonHttpClient;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig.ConsistentReads;
@@ -61,6 +62,7 @@ import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.amazonaws.services.dynamodbv2.model.Select;
 import com.amazonaws.services.dynamodbv2.model.UpdateItemRequest;
 import com.amazonaws.services.dynamodbv2.model.WriteRequest;
+import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.util.VersionInfoUtils;
 
 /**
@@ -151,10 +153,11 @@ import com.amazonaws.util.VersionInfoUtils;
  * @see DynamoDBMapperConfig
  */
 public class DynamoDBMapper {
-
+    private final S3ClientCache s3cc;
     private final AmazonDynamoDB db;
     private final DynamoDBMapperConfig config;
-    private static final DynamoDBReflector reflector = new DynamoDBReflector();
+    private final DynamoDBReflector reflector = new DynamoDBReflector();
+    
     /** The max back off time for batch write */
     private static final long MAX_BACKOFF_IN_MILLISECONDS = 1000 * 3;
 
@@ -187,8 +190,45 @@ public class DynamoDBMapper {
     public DynamoDBMapper(AmazonDynamoDB dynamoDB, DynamoDBMapperConfig config) {
         this.db = dynamoDB;
         this.config = config;
+        this.s3cc = null;
     }
 
+    /**
+     * Constructs a new mapper with the service object, configuration, and S3
+     * client cache given.
+     * 
+     * @param dynamoDB
+     *            The service object to use for all service calls.
+     * @param config
+     *            The default configuration to use for all service calls. It can
+     *            be overridden on a per-operation basis.
+     * @param s3CredentialProvider
+     *            The credentials provider for accessing S3.
+     *            Relevant only if {@link S3Link} is involved.
+     */
+    public DynamoDBMapper(AmazonDynamoDB dynamoDB, DynamoDBMapperConfig config, AWSCredentialsProvider s3CredentialProvider) {
+        if ( s3CredentialProvider == null ) {
+            throw new IllegalArgumentException("s3 credentials provider must not be null");
+        }
+        this.db = dynamoDB;
+        this.config = config;
+        this.s3cc = new S3ClientCache(s3CredentialProvider.getCredentials());
+    }
+
+    /**
+     * Constructs a new mapper with the service object and S3 client cache
+     * given, using the default configuration.
+     * 
+     * @param ddb
+     *            The service object to use for all service calls.
+     * @param s3CredentialProvider
+     *            The credentials provider for accessing S3.
+     *            Relevant only if {@link S3Link} is involved.
+     * @see DynamoDBMapperConfig#DEFAULT
+     */
+    public DynamoDBMapper(AmazonDynamoDB ddb, AWSCredentialsProvider s3CredentialProvider) {
+        this(ddb, DynamoDBMapperConfig.DEFAULT, s3CredentialProvider);
+    }
     /**
      * Loads an object with the hash key given and a configuration override.
      * This configuration overrides the default provided at object construction.
@@ -265,9 +305,11 @@ public class DynamoDBMapper {
             return null;
         }
 
-        return marshallIntoObject(clazz, itemAttributes);
+        T object = marshallIntoObject(clazz, itemAttributes);
+        return object;    
     }
 
+    
     /**
      * Returns a key map for the key object given.
      *
@@ -452,7 +494,7 @@ public class DynamoDBMapper {
     private <T> void setValue(final T toReturn, final Method getter, AttributeValue value) {
 
         Method setter = reflector.getSetter(getter);
-        ArgumentUnmarshaller unmarhsaller = reflector.getArgumentUnmarshaller(toReturn, getter, setter);
+        ArgumentUnmarshaller unmarhsaller = reflector.getArgumentUnmarshaller(toReturn, getter, setter, s3cc);
         unmarhsaller.typeCheck(value, setter);
 
         Object argument;
@@ -514,8 +556,8 @@ public class DynamoDBMapper {
     /**
      * Saves an item in DynamoDB. The service method used is determined by the
      * {@link DynamoDBMapperConfig#getSaveBehavior()} value, to use either
-     * {@link AWSDynamoDB#putItem(PutItemRequest)} or
-     * {@link AWSDynamoDB#updateItem(UpdateItemRequest)}:
+     * {@link AmazonDynamoDB#putItem(PutItemRequest)} or
+     * {@link AmazonDynamoDB#updateItem(UpdateItemRequest)}:
      * <ul>
      * <li><b>UPDATE</b> (default) : UPDATE will not affect unmodeled attributes
      * on a save operation and a null value for the modeled attribute will
@@ -570,6 +612,8 @@ public class DynamoDBMapper {
                                     .withAction("PUT"));
                 }
 
+                /* Use default implementation of onNonKeyAttribute(...) */
+                
                 @Override
                 protected void onNullNonKeyAttribute(String attributeName) {
                     /* When doing a force put, we can safely ignore the null-valued attributes. */
@@ -594,14 +638,37 @@ public class DynamoDBMapper {
                     /* Put it in the key collection which is later used in the updateItem request. */
                     getKeyAttributeValues().put(attributeName, keyAttributeValue);
                 }
+                
+
+                @Override
+                protected void onNonKeyAttribute(String attributeName,
+                        AttributeValue currentValue) {
+                    /* If it's a set attribute and the mapper is configured with APPEND_SET,
+                     * we do an "ADD" update instead of the default "PUT".
+                     */
+                    if (getLocalSaveBehavior() == SaveBehavior.APPEND_SET) {
+                        if (currentValue.getBS() != null
+                                || currentValue.getNS() != null
+                                || currentValue.getSS() != null) {
+                            getAttributeValueUpdates().put(
+                                    attributeName,
+                                    new AttributeValueUpdate().withValue(
+                                            currentValue).withAction("ADD"));
+                            return;
+                        }
+                    }
+                    /* Otherwise, we do the default "PUT" update. */
+                    super.onNonKeyAttribute(attributeName, currentValue);
+                }
 
                 @Override
                 protected void onNullNonKeyAttribute(String attributeName) {
                     /*
-                     * If UPDATE_SKIP_NULL_ATTRIBUTES is configured, we don't
-                     * delete null value attributes.
+                     * If UPDATE_SKIP_NULL_ATTRIBUTES or APPEND_SET is
+                     * configured, we don't delete null value attributes.
                      */
-                    if (getLocalSaveBehavior() == SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES) {
+                    if (getLocalSaveBehavior() == SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES
+                            || getLocalSaveBehavior() == SaveBehavior.APPEND_SET) {
                         return;
                     }
                     
@@ -618,7 +685,12 @@ public class DynamoDBMapper {
                 protected void executeLowLevelRequest(boolean onlyKeyAttributeSpecified) {
                     /*
                      * Do a putItem when a key-only object is being saved with
-                     * UPDATE configuration.
+                     * UPDATE configuration. 
+                     * Here we only need to consider UPDATE configuration, since
+                     * only UPDATE could cause the problematic situation of
+                     * updating an existing primary key with "DELETE" action on
+                     * non-key attributes. See the javadoc of keyOnlyPut(...)
+                     * for more detail.
                      */
                     boolean doUpdateItem = true;
                     if (onlyKeyAttributeSpecified && getLocalSaveBehavior() == SaveBehavior.UPDATE) {
@@ -752,8 +824,7 @@ public class DynamoDBMapper {
                 else  {
                     AttributeValue currentValue = getSimpleAttributeValue(method, getterResult);
                     if ( currentValue != null ) {
-                        updateValues.put(attributeName, new AttributeValueUpdate().withValue(currentValue)
-                                .withAction("PUT"));
+                        onNonKeyAttribute(attributeName, currentValue);
                         nonKeyAttributePresent = true;
                     } else {
                         onNullNonKeyAttribute(attributeName);
@@ -767,9 +838,11 @@ public class DynamoDBMapper {
             executeLowLevelRequest(! nonKeyAttributePresent);
             
             /*
-             * Finally, after the service call has succeeded, update the in-memory
-             * object with new field values as appropriate.
-             */
+			 * Finally, after the service call has succeeded, update the
+			 * in-memory object with new field values as appropriate. This
+			 * currently takes into account of auto-generated keys and versioned
+			 * attributes.
+			 */
             for ( ValueUpdate update : inMemoryUpdates ) {
                 update.apply();
             }
@@ -788,7 +861,22 @@ public class DynamoDBMapper {
         protected abstract void onKeyAttributeValue(String attributeName, AttributeValue keyAttributeValue);
         
         /**
-         * Implement this method to do any additional operations when a non-key
+         * Implement this method for necessary operations when a non-key
+         * attribute is set a non-null value in the object.
+         * The default implementation simply adds a "PUT" update for the given attribute.
+         * 
+         * @param attributeName
+         *            The name of the non-key attribute.
+         * @param currentValue
+         *            The updated value of the given attribute.
+         */
+        protected void onNonKeyAttribute(String attributeName, AttributeValue currentValue) {
+            updateValues.put(attributeName, new AttributeValueUpdate()
+                    .withValue(currentValue).withAction("PUT"));
+        }
+        
+        /**
+         * Implement this method for necessary operations when a non-key
          * attribute is set null in the object.
          * 
          * @param attributeName
@@ -1328,7 +1416,8 @@ public class DynamoDBMapper {
      * their primary keys.
      * {@link AmazonDynamoDB#batchGetItem(BatchGetItemRequest)} API.
      *
-     * @see DynamoDBMapper#batchLoad(Map, List, DynamoDBMapperConfig)
+     * @see #batchLoad(List, DynamoDBMapperConfig)
+     * @see #batchLoad(Map, DynamoDBMapperConfig)
      */
     public Map<String, List<Object>> batchLoad(Map<Class<?>, List<KeyPair>> itemsToGet) {
         return batchLoad(itemsToGet, this.config);
@@ -1780,7 +1869,7 @@ public class DynamoDBMapper {
      *
      * @param clazz
      *            The class mapped to a DynamoDB table.
-     * @param scanExpression
+     * @param queryExpression
      *            The parameters for running the scan.
      * @param config
      *            The mapper configuration to use for the query, which overrides
@@ -1986,12 +2075,9 @@ public class DynamoDBMapper {
                 item.put(e.getKey(), e.getValue());
             }
         }
-        boolean hashKeyAdded = false;
-        boolean rangeKeyAdded = false;
         String hashKey = reflector.getAttributeName(reflector.getHashKeyGetter(clazz));
         if (!item.containsKey(hashKey)) {
             item.put(hashKey, keys.get(hashKey));
-            hashKeyAdded = true;
         }
 
         item = transformAttributes(clazz, item);
@@ -2068,5 +2154,40 @@ public class DynamoDBMapper {
             return exception;
         }
 
+    }
+
+    /**
+     * Returns the underlying {@link S3ClientCache} for accessing S3.
+     */
+    public S3ClientCache getS3ClientCache() {
+        return s3cc;
+    }
+
+    /**
+     * Creates an S3Link with the specified bucket name and key using the
+     * default S3 region.
+     * This method requires the mapper to have been initialized with the
+     * necessary credentials for accessing S3.
+     *
+     * @throws IllegalStateException if the mapper has not been constructed
+     * with the necessary S3 AWS credentials.
+     */
+    public S3Link createS3Link(String bucketName, String key) {
+        return createS3Link(null, bucketName , key);
+    }
+
+    /**
+     * Creates an S3Link with the specified region, bucket name and key.
+     * This method requires the mapper to have been initialized with the
+     * necessary credentials for accessing S3.
+     *
+     * @throws IllegalStateException if the mapper has not been constructed
+     * with the necessary S3 AWS credentials.
+     */
+    public S3Link createS3Link(Region s3region, String bucketName, String key) {
+        if ( s3cc == null ) {
+            throw new IllegalStateException("Mapper must be constructed with S3 AWS Credentials to create S3Link");
+        }
+        return new S3Link(s3cc, s3region, bucketName , key);
     }
 }

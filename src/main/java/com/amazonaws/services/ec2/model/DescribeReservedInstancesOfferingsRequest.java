@@ -13,10 +13,12 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
+import java.io.Serializable;
+
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Request;
 import com.amazonaws.services.ec2.model.transform.DescribeReservedInstancesOfferingsRequestMarshaller;
-import java.io.Serializable;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#describeReservedInstancesOfferings(DescribeReservedInstancesOfferingsRequest) DescribeReservedInstancesOfferings operation}.
@@ -51,6 +53,9 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
 
     /**
      * The Reserved Instance product description.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      */
     private String productDescription;
 
@@ -67,11 +72,17 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
      * The tenancy of the Reserved Instance offering. A Reserved Instance
      * with tenancy of dedicated will run on single-tenant hardware and can
      * only be launched within a VPC.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      */
     private String instanceTenancy;
 
     /**
      * The Reserved Instance offering type.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
      */
     private String offeringType;
 
@@ -292,8 +303,13 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
     
     /**
      * The Reserved Instance product description.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @return The Reserved Instance product description.
+     *
+     * @see RIProductDescription
      */
     public String getProductDescription() {
         return productDescription;
@@ -301,8 +317,13 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
     
     /**
      * The Reserved Instance product description.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @param productDescription The Reserved Instance product description.
+     *
+     * @see RIProductDescription
      */
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
@@ -312,17 +333,56 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
      * The Reserved Instance product description.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @param productDescription The Reserved Instance product description.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see RIProductDescription
      */
     public DescribeReservedInstancesOfferingsRequest withProductDescription(String productDescription) {
         this.productDescription = productDescription;
         return this;
     }
     
+    
+    /**
+     * The Reserved Instance product description.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
+     *
+     * @param productDescription The Reserved Instance product description.
+     *
+     * @see RIProductDescription
+     */
+    public void setProductDescription(RIProductDescription productDescription) {
+        this.productDescription = productDescription.toString();
+    }
+    
+    /**
+     * The Reserved Instance product description.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
+     *
+     * @param productDescription The Reserved Instance product description.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see RIProductDescription
+     */
+    public DescribeReservedInstancesOfferingsRequest withProductDescription(RIProductDescription productDescription) {
+        this.productDescription = productDescription.toString();
+        return this;
+    }
     
     /**
      * A list of filters used to match properties for
@@ -429,10 +489,15 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
      * The tenancy of the Reserved Instance offering. A Reserved Instance
      * with tenancy of dedicated will run on single-tenant hardware and can
      * only be launched within a VPC.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @return The tenancy of the Reserved Instance offering. A Reserved Instance
      *         with tenancy of dedicated will run on single-tenant hardware and can
      *         only be launched within a VPC.
+     *
+     * @see Tenancy
      */
     public String getInstanceTenancy() {
         return instanceTenancy;
@@ -442,10 +507,15 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
      * The tenancy of the Reserved Instance offering. A Reserved Instance
      * with tenancy of dedicated will run on single-tenant hardware and can
      * only be launched within a VPC.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @param instanceTenancy The tenancy of the Reserved Instance offering. A Reserved Instance
      *         with tenancy of dedicated will run on single-tenant hardware and can
      *         only be launched within a VPC.
+     *
+     * @see Tenancy
      */
     public void setInstanceTenancy(String instanceTenancy) {
         this.instanceTenancy = instanceTenancy;
@@ -457,6 +527,9 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
      * only be launched within a VPC.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @param instanceTenancy The tenancy of the Reserved Instance offering. A Reserved Instance
      *         with tenancy of dedicated will run on single-tenant hardware and can
@@ -464,6 +537,8 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see Tenancy
      */
     public DescribeReservedInstancesOfferingsRequest withInstanceTenancy(String instanceTenancy) {
         this.instanceTenancy = instanceTenancy;
@@ -472,9 +547,56 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
     
     
     /**
+     * The tenancy of the Reserved Instance offering. A Reserved Instance
+     * with tenancy of dedicated will run on single-tenant hardware and can
+     * only be launched within a VPC.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
+     *
+     * @param instanceTenancy The tenancy of the Reserved Instance offering. A Reserved Instance
+     *         with tenancy of dedicated will run on single-tenant hardware and can
+     *         only be launched within a VPC.
+     *
+     * @see Tenancy
+     */
+    public void setInstanceTenancy(Tenancy instanceTenancy) {
+        this.instanceTenancy = instanceTenancy.toString();
+    }
+    
+    /**
+     * The tenancy of the Reserved Instance offering. A Reserved Instance
+     * with tenancy of dedicated will run on single-tenant hardware and can
+     * only be launched within a VPC.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
+     *
+     * @param instanceTenancy The tenancy of the Reserved Instance offering. A Reserved Instance
+     *         with tenancy of dedicated will run on single-tenant hardware and can
+     *         only be launched within a VPC.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see Tenancy
+     */
+    public DescribeReservedInstancesOfferingsRequest withInstanceTenancy(Tenancy instanceTenancy) {
+        this.instanceTenancy = instanceTenancy.toString();
+        return this;
+    }
+    
+    /**
      * The Reserved Instance offering type.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
      *
      * @return The Reserved Instance offering type.
+     *
+     * @see OfferingTypeValues
      */
     public String getOfferingType() {
         return offeringType;
@@ -482,8 +604,13 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
     
     /**
      * The Reserved Instance offering type.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
      *
      * @param offeringType The Reserved Instance offering type.
+     *
+     * @see OfferingTypeValues
      */
     public void setOfferingType(String offeringType) {
         this.offeringType = offeringType;
@@ -493,17 +620,56 @@ public class DescribeReservedInstancesOfferingsRequest extends AmazonWebServiceR
      * The Reserved Instance offering type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
      *
      * @param offeringType The Reserved Instance offering type.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see OfferingTypeValues
      */
     public DescribeReservedInstancesOfferingsRequest withOfferingType(String offeringType) {
         this.offeringType = offeringType;
         return this;
     }
     
+    
+    /**
+     * The Reserved Instance offering type.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
+     *
+     * @param offeringType The Reserved Instance offering type.
+     *
+     * @see OfferingTypeValues
+     */
+    public void setOfferingType(OfferingTypeValues offeringType) {
+        this.offeringType = offeringType.toString();
+    }
+    
+    /**
+     * The Reserved Instance offering type.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
+     *
+     * @param offeringType The Reserved Instance offering type.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see OfferingTypeValues
+     */
+    public DescribeReservedInstancesOfferingsRequest withOfferingType(OfferingTypeValues offeringType) {
+        this.offeringType = offeringType.toString();
+        return this;
+    }
     
     /**
      * Returns the value of the NextToken property for this object.

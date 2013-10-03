@@ -68,11 +68,11 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
         if ( credentials instanceof AnonymousAWSCredentials ) {
             return;
         }
-        
+
         AWSCredentials sanitizedCredentials = sanitizeCredentials(credentials);
         request.addParameter("AWSAccessKeyId", sanitizedCredentials.getAWSAccessKeyId());
         request.addParameter("SignatureVersion", version.toString());
-        
+
         int timeOffset = getTimeOffset(request);
         request.addParameter("Timestamp", getFormattedTimestamp(timeOffset));
 
@@ -108,9 +108,9 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
             new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
         sorted.putAll(parameters);
 
-        for (String key : sorted.keySet()) {
-            data.append(key);
-            data.append(sorted.get(key));
+        for (Map.Entry<String, String> entry : sorted.entrySet()) {
+            data.append(entry.getKey());
+            data.append(entry.getValue());
         }
 
         return data.toString();
@@ -154,6 +154,8 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
             }
 
             resourcePath += request.getResourcePath();
+        } else if (!resourcePath.endsWith("/")) {
+            resourcePath += "/";
         }
 
         if (!resourcePath.startsWith("/")) {

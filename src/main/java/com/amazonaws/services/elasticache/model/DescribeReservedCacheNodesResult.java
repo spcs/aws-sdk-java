@@ -13,49 +13,52 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.elasticache.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
- * Contains the result of a successful invocation of the DescribeReservedCacheNodes action.
+ * Represents the output of a <i>DescribeReservedCacheNodes</i> operation.
  * </p>
  */
 public class DescribeReservedCacheNodesResult implements Serializable {
 
     /**
-     * The marker provided for paginated results.
+     * Provides an identifier to allow retrieval of paginated results.
      */
     private String marker;
 
     /**
-     * A list of of reserved Cache Nodes.
+     * A list of reserved cache nodes. Each element in the list contains
+     * detailed information about one node.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<ReservedCacheNode> reservedCacheNodes;
 
     /**
-     * The marker provided for paginated results.
+     * Provides an identifier to allow retrieval of paginated results.
      *
-     * @return The marker provided for paginated results.
+     * @return Provides an identifier to allow retrieval of paginated results.
      */
     public String getMarker() {
         return marker;
     }
     
     /**
-     * The marker provided for paginated results.
+     * Provides an identifier to allow retrieval of paginated results.
      *
-     * @param marker The marker provided for paginated results.
+     * @param marker Provides an identifier to allow retrieval of paginated results.
      */
     public void setMarker(String marker) {
         this.marker = marker;
     }
     
     /**
-     * The marker provided for paginated results.
+     * Provides an identifier to allow retrieval of paginated results.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param marker The marker provided for paginated results.
+     * @param marker Provides an identifier to allow retrieval of paginated results.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
@@ -67,9 +70,11 @@ public class DescribeReservedCacheNodesResult implements Serializable {
     
     
     /**
-     * A list of of reserved Cache Nodes.
+     * A list of reserved cache nodes. Each element in the list contains
+     * detailed information about one node.
      *
-     * @return A list of of reserved Cache Nodes.
+     * @return A list of reserved cache nodes. Each element in the list contains
+     *         detailed information about one node.
      */
     public java.util.List<ReservedCacheNode> getReservedCacheNodes() {
         
@@ -81,9 +86,11 @@ public class DescribeReservedCacheNodesResult implements Serializable {
     }
     
     /**
-     * A list of of reserved Cache Nodes.
+     * A list of reserved cache nodes. Each element in the list contains
+     * detailed information about one node.
      *
-     * @param reservedCacheNodes A list of of reserved Cache Nodes.
+     * @param reservedCacheNodes A list of reserved cache nodes. Each element in the list contains
+     *         detailed information about one node.
      */
     public void setReservedCacheNodes(java.util.Collection<ReservedCacheNode> reservedCacheNodes) {
         if (reservedCacheNodes == null) {
@@ -96,11 +103,13 @@ public class DescribeReservedCacheNodesResult implements Serializable {
     }
     
     /**
-     * A list of of reserved Cache Nodes.
+     * A list of reserved cache nodes. Each element in the list contains
+     * detailed information about one node.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedCacheNodes A list of of reserved Cache Nodes.
+     * @param reservedCacheNodes A list of reserved cache nodes. Each element in the list contains
+     *         detailed information about one node.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
@@ -114,11 +123,13 @@ public class DescribeReservedCacheNodesResult implements Serializable {
     }
     
     /**
-     * A list of of reserved Cache Nodes.
+     * A list of reserved cache nodes. Each element in the list contains
+     * detailed information about one node.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param reservedCacheNodes A list of of reserved Cache Nodes.
+     * @param reservedCacheNodes A list of reserved cache nodes. Each element in the list contains
+     *         detailed information about one node.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.

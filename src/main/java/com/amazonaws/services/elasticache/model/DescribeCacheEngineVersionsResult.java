@@ -13,49 +13,52 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.elasticache.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
- * Contains the result of a successful invocation of the DescribeCacheEngineVersions action.
+ * Represents the output of a DescribeCacheEngineVersions operation.
  * </p>
  */
 public class DescribeCacheEngineVersionsResult implements Serializable {
 
     /**
-     * The identifier returned to allow retrieval of paginated results.
+     * Provides an identifier to allow retrieval of paginated results.
      */
     private String marker;
 
     /**
-     * A list of <code>CacheEngineVersion</code> elements.
+     * A list of cache engine version details. Each element in the list
+     * contains detailed information about once cache engine version.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<CacheEngineVersion> cacheEngineVersions;
 
     /**
-     * The identifier returned to allow retrieval of paginated results.
+     * Provides an identifier to allow retrieval of paginated results.
      *
-     * @return The identifier returned to allow retrieval of paginated results.
+     * @return Provides an identifier to allow retrieval of paginated results.
      */
     public String getMarker() {
         return marker;
     }
     
     /**
-     * The identifier returned to allow retrieval of paginated results.
+     * Provides an identifier to allow retrieval of paginated results.
      *
-     * @param marker The identifier returned to allow retrieval of paginated results.
+     * @param marker Provides an identifier to allow retrieval of paginated results.
      */
     public void setMarker(String marker) {
         this.marker = marker;
     }
     
     /**
-     * The identifier returned to allow retrieval of paginated results.
+     * Provides an identifier to allow retrieval of paginated results.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param marker The identifier returned to allow retrieval of paginated results.
+     * @param marker Provides an identifier to allow retrieval of paginated results.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
@@ -67,9 +70,11 @@ public class DescribeCacheEngineVersionsResult implements Serializable {
     
     
     /**
-     * A list of <code>CacheEngineVersion</code> elements.
+     * A list of cache engine version details. Each element in the list
+     * contains detailed information about once cache engine version.
      *
-     * @return A list of <code>CacheEngineVersion</code> elements.
+     * @return A list of cache engine version details. Each element in the list
+     *         contains detailed information about once cache engine version.
      */
     public java.util.List<CacheEngineVersion> getCacheEngineVersions() {
         
@@ -81,9 +86,11 @@ public class DescribeCacheEngineVersionsResult implements Serializable {
     }
     
     /**
-     * A list of <code>CacheEngineVersion</code> elements.
+     * A list of cache engine version details. Each element in the list
+     * contains detailed information about once cache engine version.
      *
-     * @param cacheEngineVersions A list of <code>CacheEngineVersion</code> elements.
+     * @param cacheEngineVersions A list of cache engine version details. Each element in the list
+     *         contains detailed information about once cache engine version.
      */
     public void setCacheEngineVersions(java.util.Collection<CacheEngineVersion> cacheEngineVersions) {
         if (cacheEngineVersions == null) {
@@ -96,11 +103,13 @@ public class DescribeCacheEngineVersionsResult implements Serializable {
     }
     
     /**
-     * A list of <code>CacheEngineVersion</code> elements.
+     * A list of cache engine version details. Each element in the list
+     * contains detailed information about once cache engine version.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param cacheEngineVersions A list of <code>CacheEngineVersion</code> elements.
+     * @param cacheEngineVersions A list of cache engine version details. Each element in the list
+     *         contains detailed information about once cache engine version.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
@@ -114,11 +123,13 @@ public class DescribeCacheEngineVersionsResult implements Serializable {
     }
     
     /**
-     * A list of <code>CacheEngineVersion</code> elements.
+     * A list of cache engine version details. Each element in the list
+     * contains detailed information about once cache engine version.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param cacheEngineVersions A list of <code>CacheEngineVersion</code> elements.
+     * @param cacheEngineVersions A list of cache engine version details. Each element in the list
+     *         contains detailed information about once cache engine version.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.

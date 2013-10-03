@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -32,7 +34,7 @@ public class TagDescription implements Serializable {
      * instance, AMI, EBS volume, etc).
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, snapshot, spot-instances-request, subnet, volume, vpc, vpn-connection, vpn-gateway
+     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, internet-gateway, network-acl, network-interface, reserved-instances, route-table, snapshot, spot-instances-request, subnet, security-group, volume, vpc, vpn-connection, vpn-gateway
      */
     private String resourceType;
 
@@ -85,7 +87,7 @@ public class TagDescription implements Serializable {
      * instance, AMI, EBS volume, etc).
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, snapshot, spot-instances-request, subnet, volume, vpc, vpn-connection, vpn-gateway
+     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, internet-gateway, network-acl, network-interface, reserved-instances, route-table, snapshot, spot-instances-request, subnet, security-group, volume, vpc, vpn-connection, vpn-gateway
      *
      * @return The type of resource identified by the associated resource ID (ex:
      *         instance, AMI, EBS volume, etc).
@@ -101,7 +103,7 @@ public class TagDescription implements Serializable {
      * instance, AMI, EBS volume, etc).
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, snapshot, spot-instances-request, subnet, volume, vpc, vpn-connection, vpn-gateway
+     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, internet-gateway, network-acl, network-interface, reserved-instances, route-table, snapshot, spot-instances-request, subnet, security-group, volume, vpc, vpn-connection, vpn-gateway
      *
      * @param resourceType The type of resource identified by the associated resource ID (ex:
      *         instance, AMI, EBS volume, etc).
@@ -119,7 +121,7 @@ public class TagDescription implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, snapshot, spot-instances-request, subnet, volume, vpc, vpn-connection, vpn-gateway
+     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, internet-gateway, network-acl, network-interface, reserved-instances, route-table, snapshot, spot-instances-request, subnet, security-group, volume, vpc, vpn-connection, vpn-gateway
      *
      * @param resourceType The type of resource identified by the associated resource ID (ex:
      *         instance, AMI, EBS volume, etc).
@@ -140,7 +142,7 @@ public class TagDescription implements Serializable {
      * instance, AMI, EBS volume, etc).
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, snapshot, spot-instances-request, subnet, volume, vpc, vpn-connection, vpn-gateway
+     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, internet-gateway, network-acl, network-interface, reserved-instances, route-table, snapshot, spot-instances-request, subnet, security-group, volume, vpc, vpn-connection, vpn-gateway
      *
      * @param resourceType The type of resource identified by the associated resource ID (ex:
      *         instance, AMI, EBS volume, etc).
@@ -158,7 +160,7 @@ public class TagDescription implements Serializable {
      * Returns a reference to this object so that method calls can be chained together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, snapshot, spot-instances-request, subnet, volume, vpc, vpn-connection, vpn-gateway
+     * <b>Allowed Values: </b>customer-gateway, dhcp-options, image, instance, internet-gateway, network-acl, network-interface, reserved-instances, route-table, snapshot, spot-instances-request, subnet, security-group, volume, vpc, vpn-connection, vpn-gateway
      *
      * @param resourceType The type of resource identified by the associated resource ID (ex:
      *         instance, AMI, EBS volume, etc).

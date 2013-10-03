@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -40,6 +42,9 @@ public class SpotDatafeedSubscription implements Serializable {
 
     /**
      * Specifies the state of the Spot Instance request.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Active, Inactive
      */
     private String state;
 
@@ -158,8 +163,13 @@ public class SpotDatafeedSubscription implements Serializable {
     
     /**
      * Specifies the state of the Spot Instance request.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Active, Inactive
      *
      * @return Specifies the state of the Spot Instance request.
+     *
+     * @see DatafeedSubscriptionState
      */
     public String getState() {
         return state;
@@ -167,8 +177,13 @@ public class SpotDatafeedSubscription implements Serializable {
     
     /**
      * Specifies the state of the Spot Instance request.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Active, Inactive
      *
      * @param state Specifies the state of the Spot Instance request.
+     *
+     * @see DatafeedSubscriptionState
      */
     public void setState(String state) {
         this.state = state;
@@ -178,17 +193,56 @@ public class SpotDatafeedSubscription implements Serializable {
      * Specifies the state of the Spot Instance request.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Active, Inactive
      *
      * @param state Specifies the state of the Spot Instance request.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see DatafeedSubscriptionState
      */
     public SpotDatafeedSubscription withState(String state) {
         this.state = state;
         return this;
     }
     
+    
+    /**
+     * Specifies the state of the Spot Instance request.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Active, Inactive
+     *
+     * @param state Specifies the state of the Spot Instance request.
+     *
+     * @see DatafeedSubscriptionState
+     */
+    public void setState(DatafeedSubscriptionState state) {
+        this.state = state.toString();
+    }
+    
+    /**
+     * Specifies the state of the Spot Instance request.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Active, Inactive
+     *
+     * @param state Specifies the state of the Spot Instance request.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see DatafeedSubscriptionState
+     */
+    public SpotDatafeedSubscription withState(DatafeedSubscriptionState state) {
+        this.state = state.toString();
+        return this;
+    }
     
     /**
      * Specifies a fault code for the Spot Instance request, if present.

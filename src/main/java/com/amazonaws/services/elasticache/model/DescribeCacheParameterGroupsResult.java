@@ -13,49 +13,52 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.elasticache.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
- * Contains a list of CacheParameterGroups.
+ * Represents the output of a <i>DescribeCacheParameterGroups</i> operation.
  * </p>
  */
 public class DescribeCacheParameterGroupsResult implements Serializable {
 
     /**
-     * The marker obtained from a previous operation response.
+     * Provides an identifier to allow retrieval of paginated results.
      */
     private String marker;
 
     /**
-     * A list of <a>CacheParameterGroup</a> instances.
+     * A list of cache parameter groups. Each element in the list contains
+     * detailed information about one cache parameter group.
      */
     private com.amazonaws.internal.ListWithAutoConstructFlag<CacheParameterGroup> cacheParameterGroups;
 
     /**
-     * The marker obtained from a previous operation response.
+     * Provides an identifier to allow retrieval of paginated results.
      *
-     * @return The marker obtained from a previous operation response.
+     * @return Provides an identifier to allow retrieval of paginated results.
      */
     public String getMarker() {
         return marker;
     }
     
     /**
-     * The marker obtained from a previous operation response.
+     * Provides an identifier to allow retrieval of paginated results.
      *
-     * @param marker The marker obtained from a previous operation response.
+     * @param marker Provides an identifier to allow retrieval of paginated results.
      */
     public void setMarker(String marker) {
         this.marker = marker;
     }
     
     /**
-     * The marker obtained from a previous operation response.
+     * Provides an identifier to allow retrieval of paginated results.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param marker The marker obtained from a previous operation response.
+     * @param marker Provides an identifier to allow retrieval of paginated results.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
@@ -67,9 +70,11 @@ public class DescribeCacheParameterGroupsResult implements Serializable {
     
     
     /**
-     * A list of <a>CacheParameterGroup</a> instances.
+     * A list of cache parameter groups. Each element in the list contains
+     * detailed information about one cache parameter group.
      *
-     * @return A list of <a>CacheParameterGroup</a> instances.
+     * @return A list of cache parameter groups. Each element in the list contains
+     *         detailed information about one cache parameter group.
      */
     public java.util.List<CacheParameterGroup> getCacheParameterGroups() {
         
@@ -81,9 +86,11 @@ public class DescribeCacheParameterGroupsResult implements Serializable {
     }
     
     /**
-     * A list of <a>CacheParameterGroup</a> instances.
+     * A list of cache parameter groups. Each element in the list contains
+     * detailed information about one cache parameter group.
      *
-     * @param cacheParameterGroups A list of <a>CacheParameterGroup</a> instances.
+     * @param cacheParameterGroups A list of cache parameter groups. Each element in the list contains
+     *         detailed information about one cache parameter group.
      */
     public void setCacheParameterGroups(java.util.Collection<CacheParameterGroup> cacheParameterGroups) {
         if (cacheParameterGroups == null) {
@@ -96,11 +103,13 @@ public class DescribeCacheParameterGroupsResult implements Serializable {
     }
     
     /**
-     * A list of <a>CacheParameterGroup</a> instances.
+     * A list of cache parameter groups. Each element in the list contains
+     * detailed information about one cache parameter group.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param cacheParameterGroups A list of <a>CacheParameterGroup</a> instances.
+     * @param cacheParameterGroups A list of cache parameter groups. Each element in the list contains
+     *         detailed information about one cache parameter group.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
@@ -114,11 +123,13 @@ public class DescribeCacheParameterGroupsResult implements Serializable {
     }
     
     /**
-     * A list of <a>CacheParameterGroup</a> instances.
+     * A list of cache parameter groups. Each element in the list contains
+     * detailed information about one cache parameter group.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param cacheParameterGroups A list of <a>CacheParameterGroup</a> instances.
+     * @param cacheParameterGroups A list of cache parameter groups. Each element in the list contains
+     *         detailed information about one cache parameter group.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.

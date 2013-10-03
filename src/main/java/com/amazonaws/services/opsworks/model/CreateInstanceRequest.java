@@ -13,8 +13,10 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.opsworks.model;
-import com.amazonaws.AmazonWebServiceRequest;
+
 import java.io.Serializable;
+
+import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.opsworks.AWSOpsWorks#createInstance(CreateInstanceRequest) CreateInstance operation}.
@@ -106,6 +108,13 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
      * and Endpoints</a>.
      */
     private String availabilityZone;
+
+    /**
+     * The ID of the instance's subnet. If the stack is running in a VPC, you
+     * can use this parameter to override the stack's default subnet ID value
+     * and direct AWS OpsWorks to launch the instance in a different subnet.
+     */
+    private String subnetId;
 
     /**
      * The instance architecture. Instance types do not necessarily support
@@ -761,6 +770,52 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
     
     
     /**
+     * The ID of the instance's subnet. If the stack is running in a VPC, you
+     * can use this parameter to override the stack's default subnet ID value
+     * and direct AWS OpsWorks to launch the instance in a different subnet.
+     *
+     * @return The ID of the instance's subnet. If the stack is running in a VPC, you
+     *         can use this parameter to override the stack's default subnet ID value
+     *         and direct AWS OpsWorks to launch the instance in a different subnet.
+     */
+    public String getSubnetId() {
+        return subnetId;
+    }
+    
+    /**
+     * The ID of the instance's subnet. If the stack is running in a VPC, you
+     * can use this parameter to override the stack's default subnet ID value
+     * and direct AWS OpsWorks to launch the instance in a different subnet.
+     *
+     * @param subnetId The ID of the instance's subnet. If the stack is running in a VPC, you
+     *         can use this parameter to override the stack's default subnet ID value
+     *         and direct AWS OpsWorks to launch the instance in a different subnet.
+     */
+    public void setSubnetId(String subnetId) {
+        this.subnetId = subnetId;
+    }
+    
+    /**
+     * The ID of the instance's subnet. If the stack is running in a VPC, you
+     * can use this parameter to override the stack's default subnet ID value
+     * and direct AWS OpsWorks to launch the instance in a different subnet.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param subnetId The ID of the instance's subnet. If the stack is running in a VPC, you
+     *         can use this parameter to override the stack's default subnet ID value
+     *         and direct AWS OpsWorks to launch the instance in a different subnet.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     */
+    public CreateInstanceRequest withSubnetId(String subnetId) {
+        this.subnetId = subnetId;
+        return this;
+    }
+    
+    
+    /**
      * The instance architecture. Instance types do not necessarily support
      * both architectures. For a list of the architectures that are supported
      * by the different instance types, see <a
@@ -1114,6 +1169,7 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
         if (getAmiId() != null) sb.append("AmiId: " + getAmiId() + ",");
         if (getSshKeyName() != null) sb.append("SshKeyName: " + getSshKeyName() + ",");
         if (getAvailabilityZone() != null) sb.append("AvailabilityZone: " + getAvailabilityZone() + ",");
+        if (getSubnetId() != null) sb.append("SubnetId: " + getSubnetId() + ",");
         if (getArchitecture() != null) sb.append("Architecture: " + getArchitecture() + ",");
         if (getRootDeviceType() != null) sb.append("RootDeviceType: " + getRootDeviceType() + ",");
         if (isInstallUpdatesOnBoot() != null) sb.append("InstallUpdatesOnBoot: " + isInstallUpdatesOnBoot() );
@@ -1135,6 +1191,7 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
         hashCode = prime * hashCode + ((getAmiId() == null) ? 0 : getAmiId().hashCode()); 
         hashCode = prime * hashCode + ((getSshKeyName() == null) ? 0 : getSshKeyName().hashCode()); 
         hashCode = prime * hashCode + ((getAvailabilityZone() == null) ? 0 : getAvailabilityZone().hashCode()); 
+        hashCode = prime * hashCode + ((getSubnetId() == null) ? 0 : getSubnetId().hashCode()); 
         hashCode = prime * hashCode + ((getArchitecture() == null) ? 0 : getArchitecture().hashCode()); 
         hashCode = prime * hashCode + ((getRootDeviceType() == null) ? 0 : getRootDeviceType().hashCode()); 
         hashCode = prime * hashCode + ((isInstallUpdatesOnBoot() == null) ? 0 : isInstallUpdatesOnBoot().hashCode()); 
@@ -1167,6 +1224,8 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
         if (other.getSshKeyName() != null && other.getSshKeyName().equals(this.getSshKeyName()) == false) return false; 
         if (other.getAvailabilityZone() == null ^ this.getAvailabilityZone() == null) return false;
         if (other.getAvailabilityZone() != null && other.getAvailabilityZone().equals(this.getAvailabilityZone()) == false) return false; 
+        if (other.getSubnetId() == null ^ this.getSubnetId() == null) return false;
+        if (other.getSubnetId() != null && other.getSubnetId().equals(this.getSubnetId()) == false) return false; 
         if (other.getArchitecture() == null ^ this.getArchitecture() == null) return false;
         if (other.getArchitecture() != null && other.getArchitecture().equals(this.getArchitecture()) == false) return false; 
         if (other.getRootDeviceType() == null ^ this.getRootDeviceType() == null) return false;

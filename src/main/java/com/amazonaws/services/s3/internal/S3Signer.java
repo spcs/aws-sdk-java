@@ -66,8 +66,6 @@ public class S3Signer extends AbstractAWSSigner {
      * Constructs a new S3Signer to sign requests based on the
      * AWS credentials, HTTP method and canonical S3 resource path.
      *
-     * @param credentials
-     *            The AWS credentials to use to sign the request.
      * @param httpVerb
      *            The HTTP verb (GET, PUT, POST, HEAD, DELETE) the request is
      *            using.
@@ -94,8 +92,15 @@ public class S3Signer extends AbstractAWSSigner {
             addSessionCredentials(request, (AWSSessionCredentials) sanitizedCredentials);
         }
 
-        String encodedResourcePath = HttpUtils.urlEncode(resourcePath, true);
-        
+        /*
+         * In s3 sigv2, the way slash characters are encoded should be
+         * consistent in both the request url and the encoded resource path.
+         * Since we have to encode "//" to "/%2F" in the request url to make
+         * httpclient works, we need to do the same encoding here for the
+         * resource path.
+         */
+        String encodedResourcePath = HttpUtils.appendUri(request.getEndpoint().getPath(), resourcePath, true);
+
         int timeOffset = getTimeOffset(request);
         Date date = getSignatureDate(timeOffset);
         request.addHeader(Headers.DATE, ServiceUtils.formatRfc822Date(date));

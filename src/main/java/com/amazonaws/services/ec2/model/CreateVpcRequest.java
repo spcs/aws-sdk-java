@@ -13,10 +13,12 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
+import java.io.Serializable;
+
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Request;
 import com.amazonaws.services.ec2.model.transform.CreateVpcRequestMarshaller;
-import java.io.Serializable;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#createVpc(CreateVpcRequest) CreateVpc operation}.
@@ -43,6 +45,9 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * The allowed tenancy of instances launched into the VPC. A value of
      * default means instances can be launched with any tenancy; a value of
      * dedicated means instances must be launched with tenancy as dedicated.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      */
     private String instanceTenancy;
 
@@ -105,10 +110,15 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * The allowed tenancy of instances launched into the VPC. A value of
      * default means instances can be launched with any tenancy; a value of
      * dedicated means instances must be launched with tenancy as dedicated.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @return The allowed tenancy of instances launched into the VPC. A value of
      *         default means instances can be launched with any tenancy; a value of
      *         dedicated means instances must be launched with tenancy as dedicated.
+     *
+     * @see Tenancy
      */
     public String getInstanceTenancy() {
         return instanceTenancy;
@@ -118,10 +128,15 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * The allowed tenancy of instances launched into the VPC. A value of
      * default means instances can be launched with any tenancy; a value of
      * dedicated means instances must be launched with tenancy as dedicated.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @param instanceTenancy The allowed tenancy of instances launched into the VPC. A value of
      *         default means instances can be launched with any tenancy; a value of
      *         dedicated means instances must be launched with tenancy as dedicated.
+     *
+     * @see Tenancy
      */
     public void setInstanceTenancy(String instanceTenancy) {
         this.instanceTenancy = instanceTenancy;
@@ -133,6 +148,9 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      * dedicated means instances must be launched with tenancy as dedicated.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @param instanceTenancy The allowed tenancy of instances launched into the VPC. A value of
      *         default means instances can be launched with any tenancy; a value of
@@ -140,12 +158,56 @@ public class CreateVpcRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see Tenancy
      */
     public CreateVpcRequest withInstanceTenancy(String instanceTenancy) {
         this.instanceTenancy = instanceTenancy;
         return this;
     }
     
+    
+    /**
+     * The allowed tenancy of instances launched into the VPC. A value of
+     * default means instances can be launched with any tenancy; a value of
+     * dedicated means instances must be launched with tenancy as dedicated.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
+     *
+     * @param instanceTenancy The allowed tenancy of instances launched into the VPC. A value of
+     *         default means instances can be launched with any tenancy; a value of
+     *         dedicated means instances must be launched with tenancy as dedicated.
+     *
+     * @see Tenancy
+     */
+    public void setInstanceTenancy(Tenancy instanceTenancy) {
+        this.instanceTenancy = instanceTenancy.toString();
+    }
+    
+    /**
+     * The allowed tenancy of instances launched into the VPC. A value of
+     * default means instances can be launched with any tenancy; a value of
+     * dedicated means instances must be launched with tenancy as dedicated.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
+     *
+     * @param instanceTenancy The allowed tenancy of instances launched into the VPC. A value of
+     *         default means instances can be launched with any tenancy; a value of
+     *         dedicated means instances must be launched with tenancy as dedicated.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see Tenancy
+     */
+    public CreateVpcRequest withInstanceTenancy(Tenancy instanceTenancy) {
+        this.instanceTenancy = instanceTenancy.toString();
+        return this;
+    }
     
     /**
      * This method is intended for internal use only.

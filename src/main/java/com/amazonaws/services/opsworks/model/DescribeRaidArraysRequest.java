@@ -13,13 +13,18 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.opsworks.model;
-import com.amazonaws.AmazonWebServiceRequest;
+
 import java.io.Serializable;
+
+import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * Container for the parameters to the {@link com.amazonaws.services.opsworks.AWSOpsWorks#describeRaidArrays(DescribeRaidArraysRequest) DescribeRaidArrays operation}.
  * <p>
  * Describe an instance's RAID arrays.
+ * </p>
+ * <p>
+ * <b>NOTE:</b>You must specify at least one of the parameters.
  * </p>
  *
  * @see com.amazonaws.services.opsworks.AWSOpsWorks#describeRaidArrays(DescribeRaidArraysRequest)

@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.opsworks.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -98,6 +100,11 @@ public class Instance implements Serializable {
      * and Endpoints</a>.
      */
     private String availabilityZone;
+
+    /**
+     * The instance's subnet ID, if the stack is running in a VPC.
+     */
+    private String subnetId;
 
     /**
      * The instance public DNS name.
@@ -778,6 +785,40 @@ public class Instance implements Serializable {
      */
     public Instance withAvailabilityZone(String availabilityZone) {
         this.availabilityZone = availabilityZone;
+        return this;
+    }
+    
+    
+    /**
+     * The instance's subnet ID, if the stack is running in a VPC.
+     *
+     * @return The instance's subnet ID, if the stack is running in a VPC.
+     */
+    public String getSubnetId() {
+        return subnetId;
+    }
+    
+    /**
+     * The instance's subnet ID, if the stack is running in a VPC.
+     *
+     * @param subnetId The instance's subnet ID, if the stack is running in a VPC.
+     */
+    public void setSubnetId(String subnetId) {
+        this.subnetId = subnetId;
+    }
+    
+    /**
+     * The instance's subnet ID, if the stack is running in a VPC.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param subnetId The instance's subnet ID, if the stack is running in a VPC.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     */
+    public Instance withSubnetId(String subnetId) {
+        this.subnetId = subnetId;
         return this;
     }
     
@@ -1634,6 +1675,7 @@ public class Instance implements Serializable {
         if (getOs() != null) sb.append("Os: " + getOs() + ",");
         if (getAmiId() != null) sb.append("AmiId: " + getAmiId() + ",");
         if (getAvailabilityZone() != null) sb.append("AvailabilityZone: " + getAvailabilityZone() + ",");
+        if (getSubnetId() != null) sb.append("SubnetId: " + getSubnetId() + ",");
         if (getPublicDns() != null) sb.append("PublicDns: " + getPublicDns() + ",");
         if (getPrivateDns() != null) sb.append("PrivateDns: " + getPrivateDns() + ",");
         if (getPublicIp() != null) sb.append("PublicIp: " + getPublicIp() + ",");
@@ -1670,6 +1712,7 @@ public class Instance implements Serializable {
         hashCode = prime * hashCode + ((getOs() == null) ? 0 : getOs().hashCode()); 
         hashCode = prime * hashCode + ((getAmiId() == null) ? 0 : getAmiId().hashCode()); 
         hashCode = prime * hashCode + ((getAvailabilityZone() == null) ? 0 : getAvailabilityZone().hashCode()); 
+        hashCode = prime * hashCode + ((getSubnetId() == null) ? 0 : getSubnetId().hashCode()); 
         hashCode = prime * hashCode + ((getPublicDns() == null) ? 0 : getPublicDns().hashCode()); 
         hashCode = prime * hashCode + ((getPrivateDns() == null) ? 0 : getPrivateDns().hashCode()); 
         hashCode = prime * hashCode + ((getPublicIp() == null) ? 0 : getPublicIp().hashCode()); 
@@ -1720,6 +1763,8 @@ public class Instance implements Serializable {
         if (other.getAmiId() != null && other.getAmiId().equals(this.getAmiId()) == false) return false; 
         if (other.getAvailabilityZone() == null ^ this.getAvailabilityZone() == null) return false;
         if (other.getAvailabilityZone() != null && other.getAvailabilityZone().equals(this.getAvailabilityZone()) == false) return false; 
+        if (other.getSubnetId() == null ^ this.getSubnetId() == null) return false;
+        if (other.getSubnetId() != null && other.getSubnetId().equals(this.getSubnetId()) == false) return false; 
         if (other.getPublicDns() == null ^ this.getPublicDns() == null) return false;
         if (other.getPublicDns() != null && other.getPublicDns().equals(this.getPublicDns()) == false) return false; 
         if (other.getPrivateDns() == null ^ this.getPrivateDns() == null) return false;

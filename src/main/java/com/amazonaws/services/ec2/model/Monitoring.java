@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -25,15 +27,23 @@ public class Monitoring implements Serializable {
     /**
      * The state of monitoring on an Amazon EC2 instance (ex: enabled,
      * disabled).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>disabled, enabled, pending
      */
     private String state;
 
     /**
      * The state of monitoring on an Amazon EC2 instance (ex: enabled,
      * disabled).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>disabled, enabled, pending
      *
      * @return The state of monitoring on an Amazon EC2 instance (ex: enabled,
      *         disabled).
+     *
+     * @see MonitoringState
      */
     public String getState() {
         return state;
@@ -42,9 +52,14 @@ public class Monitoring implements Serializable {
     /**
      * The state of monitoring on an Amazon EC2 instance (ex: enabled,
      * disabled).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>disabled, enabled, pending
      *
      * @param state The state of monitoring on an Amazon EC2 instance (ex: enabled,
      *         disabled).
+     *
+     * @see MonitoringState
      */
     public void setState(String state) {
         this.state = state;
@@ -55,18 +70,61 @@ public class Monitoring implements Serializable {
      * disabled).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>disabled, enabled, pending
      *
      * @param state The state of monitoring on an Amazon EC2 instance (ex: enabled,
      *         disabled).
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see MonitoringState
      */
     public Monitoring withState(String state) {
         this.state = state;
         return this;
     }
     
+    
+    /**
+     * The state of monitoring on an Amazon EC2 instance (ex: enabled,
+     * disabled).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>disabled, enabled, pending
+     *
+     * @param state The state of monitoring on an Amazon EC2 instance (ex: enabled,
+     *         disabled).
+     *
+     * @see MonitoringState
+     */
+    public void setState(MonitoringState state) {
+        this.state = state.toString();
+    }
+    
+    /**
+     * The state of monitoring on an Amazon EC2 instance (ex: enabled,
+     * disabled).
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>disabled, enabled, pending
+     *
+     * @param state The state of monitoring on an Amazon EC2 instance (ex: enabled,
+     *         disabled).
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see MonitoringState
+     */
+    public Monitoring withState(MonitoringState state) {
+        this.state = state.toString();
+        return this;
+    }
     
     /**
      * Returns a string representation of this object; useful for testing and

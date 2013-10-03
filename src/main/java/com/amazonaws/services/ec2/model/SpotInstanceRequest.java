@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * Spot Instance Request
@@ -215,8 +217,13 @@ public class SpotInstanceRequest implements Serializable {
     
     /**
      * Returns the value of the State property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>open, active, closed, cancelled, failed
      *
      * @return The value of the State property for this object.
+     *
+     * @see SpotInstanceState
      */
     public String getState() {
         return state;
@@ -224,8 +231,13 @@ public class SpotInstanceRequest implements Serializable {
     
     /**
      * Sets the value of the State property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>open, active, closed, cancelled, failed
      *
      * @param state The new value for the State property for this object.
+     *
+     * @see SpotInstanceState
      */
     public void setState(String state) {
         this.state = state;
@@ -235,17 +247,56 @@ public class SpotInstanceRequest implements Serializable {
      * Sets the value of the State property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>open, active, closed, cancelled, failed
      *
      * @param state The new value for the State property for this object.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see SpotInstanceState
      */
     public SpotInstanceRequest withState(String state) {
         this.state = state;
         return this;
     }
     
+    
+    /**
+     * Sets the value of the State property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>open, active, closed, cancelled, failed
+     *
+     * @param state The new value for the State property for this object.
+     *
+     * @see SpotInstanceState
+     */
+    public void setState(SpotInstanceState state) {
+        this.state = state.toString();
+    }
+    
+    /**
+     * Sets the value of the State property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>open, active, closed, cancelled, failed
+     *
+     * @param state The new value for the State property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see SpotInstanceState
+     */
+    public SpotInstanceRequest withState(SpotInstanceState state) {
+        this.state = state.toString();
+        return this;
+    }
     
     /**
      * Returns the value of the Fault property for this object.
@@ -556,8 +607,13 @@ public class SpotInstanceRequest implements Serializable {
     
     /**
      * Returns the value of the ProductDescription property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @return The value of the ProductDescription property for this object.
+     *
+     * @see RIProductDescription
      */
     public String getProductDescription() {
         return productDescription;
@@ -565,8 +621,13 @@ public class SpotInstanceRequest implements Serializable {
     
     /**
      * Sets the value of the ProductDescription property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @param productDescription The new value for the ProductDescription property for this object.
+     *
+     * @see RIProductDescription
      */
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
@@ -576,17 +637,56 @@ public class SpotInstanceRequest implements Serializable {
      * Sets the value of the ProductDescription property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @param productDescription The new value for the ProductDescription property for this object.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see RIProductDescription
      */
     public SpotInstanceRequest withProductDescription(String productDescription) {
         this.productDescription = productDescription;
         return this;
     }
     
+    
+    /**
+     * Sets the value of the ProductDescription property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
+     *
+     * @param productDescription The new value for the ProductDescription property for this object.
+     *
+     * @see RIProductDescription
+     */
+    public void setProductDescription(RIProductDescription productDescription) {
+        this.productDescription = productDescription.toString();
+    }
+    
+    /**
+     * Sets the value of the ProductDescription property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
+     *
+     * @param productDescription The new value for the ProductDescription property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see RIProductDescription
+     */
+    public SpotInstanceRequest withProductDescription(RIProductDescription productDescription) {
+        this.productDescription = productDescription.toString();
+        return this;
+    }
     
     /**
      * A list of tags for this spot instance request.

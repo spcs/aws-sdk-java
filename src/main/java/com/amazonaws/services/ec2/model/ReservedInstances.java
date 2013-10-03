@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -45,6 +47,8 @@ public class ReservedInstances implements Serializable {
      */
     private java.util.Date start;
 
+    private java.util.Date end;
+
     /**
      * The duration of the Reserved Instances, in seconds.
      */
@@ -68,11 +72,17 @@ public class ReservedInstances implements Serializable {
     /**
      * The Reserved Instances product description (ex: Windows or
      * Unix/Linux).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      */
     private String productDescription;
 
     /**
      * The state of the Reserved Instances purchase.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>payment-pending, active, payment-failed, retired
      */
     private String state;
 
@@ -83,17 +93,26 @@ public class ReservedInstances implements Serializable {
 
     /**
      * The tenancy of the reserved instance (ex: default or dedicated).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      */
     private String instanceTenancy;
 
     /**
      * The currency of the reserved instance. Specified using ISO 4217
      * standard (e.g., USD, JPY).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>USD
      */
     private String currencyCode;
 
     /**
      * The Reserved Instance offering type.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
      */
     private String offeringType;
 
@@ -288,6 +307,40 @@ public class ReservedInstances implements Serializable {
     
     
     /**
+     * Returns the value of the End property for this object.
+     *
+     * @return The value of the End property for this object.
+     */
+    public java.util.Date getEnd() {
+        return end;
+    }
+    
+    /**
+     * Sets the value of the End property for this object.
+     *
+     * @param end The new value for the End property for this object.
+     */
+    public void setEnd(java.util.Date end) {
+        this.end = end;
+    }
+    
+    /**
+     * Sets the value of the End property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     *
+     * @param end The new value for the End property for this object.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     */
+    public ReservedInstances withEnd(java.util.Date end) {
+        this.end = end;
+        return this;
+    }
+    
+    
+    /**
      * The duration of the Reserved Instances, in seconds.
      *
      * @return The duration of the Reserved Instances, in seconds.
@@ -426,9 +479,14 @@ public class ReservedInstances implements Serializable {
     /**
      * The Reserved Instances product description (ex: Windows or
      * Unix/Linux).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @return The Reserved Instances product description (ex: Windows or
      *         Unix/Linux).
+     *
+     * @see RIProductDescription
      */
     public String getProductDescription() {
         return productDescription;
@@ -437,9 +495,14 @@ public class ReservedInstances implements Serializable {
     /**
      * The Reserved Instances product description (ex: Windows or
      * Unix/Linux).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @param productDescription The Reserved Instances product description (ex: Windows or
      *         Unix/Linux).
+     *
+     * @see RIProductDescription
      */
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
@@ -450,12 +513,17 @@ public class ReservedInstances implements Serializable {
      * Unix/Linux).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
      *
      * @param productDescription The Reserved Instances product description (ex: Windows or
      *         Unix/Linux).
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see RIProductDescription
      */
     public ReservedInstances withProductDescription(String productDescription) {
         this.productDescription = productDescription;
@@ -464,9 +532,52 @@ public class ReservedInstances implements Serializable {
     
     
     /**
+     * The Reserved Instances product description (ex: Windows or
+     * Unix/Linux).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
+     *
+     * @param productDescription The Reserved Instances product description (ex: Windows or
+     *         Unix/Linux).
+     *
+     * @see RIProductDescription
+     */
+    public void setProductDescription(RIProductDescription productDescription) {
+        this.productDescription = productDescription.toString();
+    }
+    
+    /**
+     * The Reserved Instances product description (ex: Windows or
+     * Unix/Linux).
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Linux/UNIX, Linux/UNIX (Amazon VPC), Windows, Windows (Amazon VPC)
+     *
+     * @param productDescription The Reserved Instances product description (ex: Windows or
+     *         Unix/Linux).
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see RIProductDescription
+     */
+    public ReservedInstances withProductDescription(RIProductDescription productDescription) {
+        this.productDescription = productDescription.toString();
+        return this;
+    }
+    
+    /**
      * The state of the Reserved Instances purchase.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>payment-pending, active, payment-failed, retired
      *
      * @return The state of the Reserved Instances purchase.
+     *
+     * @see ReservedInstanceState
      */
     public String getState() {
         return state;
@@ -474,8 +585,13 @@ public class ReservedInstances implements Serializable {
     
     /**
      * The state of the Reserved Instances purchase.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>payment-pending, active, payment-failed, retired
      *
      * @param state The state of the Reserved Instances purchase.
+     *
+     * @see ReservedInstanceState
      */
     public void setState(String state) {
         this.state = state;
@@ -485,17 +601,56 @@ public class ReservedInstances implements Serializable {
      * The state of the Reserved Instances purchase.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>payment-pending, active, payment-failed, retired
      *
      * @param state The state of the Reserved Instances purchase.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see ReservedInstanceState
      */
     public ReservedInstances withState(String state) {
         this.state = state;
         return this;
     }
     
+    
+    /**
+     * The state of the Reserved Instances purchase.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>payment-pending, active, payment-failed, retired
+     *
+     * @param state The state of the Reserved Instances purchase.
+     *
+     * @see ReservedInstanceState
+     */
+    public void setState(ReservedInstanceState state) {
+        this.state = state.toString();
+    }
+    
+    /**
+     * The state of the Reserved Instances purchase.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>payment-pending, active, payment-failed, retired
+     *
+     * @param state The state of the Reserved Instances purchase.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see ReservedInstanceState
+     */
+    public ReservedInstances withState(ReservedInstanceState state) {
+        this.state = state.toString();
+        return this;
+    }
     
     /**
      * A list of tags for the ReservedInstances.
@@ -568,8 +723,13 @@ public class ReservedInstances implements Serializable {
     
     /**
      * The tenancy of the reserved instance (ex: default or dedicated).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @return The tenancy of the reserved instance (ex: default or dedicated).
+     *
+     * @see Tenancy
      */
     public String getInstanceTenancy() {
         return instanceTenancy;
@@ -577,8 +737,13 @@ public class ReservedInstances implements Serializable {
     
     /**
      * The tenancy of the reserved instance (ex: default or dedicated).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @param instanceTenancy The tenancy of the reserved instance (ex: default or dedicated).
+     *
+     * @see Tenancy
      */
     public void setInstanceTenancy(String instanceTenancy) {
         this.instanceTenancy = instanceTenancy;
@@ -588,11 +753,16 @@ public class ReservedInstances implements Serializable {
      * The tenancy of the reserved instance (ex: default or dedicated).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
      *
      * @param instanceTenancy The tenancy of the reserved instance (ex: default or dedicated).
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see Tenancy
      */
     public ReservedInstances withInstanceTenancy(String instanceTenancy) {
         this.instanceTenancy = instanceTenancy;
@@ -601,11 +771,50 @@ public class ReservedInstances implements Serializable {
     
     
     /**
+     * The tenancy of the reserved instance (ex: default or dedicated).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
+     *
+     * @param instanceTenancy The tenancy of the reserved instance (ex: default or dedicated).
+     *
+     * @see Tenancy
+     */
+    public void setInstanceTenancy(Tenancy instanceTenancy) {
+        this.instanceTenancy = instanceTenancy.toString();
+    }
+    
+    /**
+     * The tenancy of the reserved instance (ex: default or dedicated).
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>default, dedicated
+     *
+     * @param instanceTenancy The tenancy of the reserved instance (ex: default or dedicated).
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see Tenancy
+     */
+    public ReservedInstances withInstanceTenancy(Tenancy instanceTenancy) {
+        this.instanceTenancy = instanceTenancy.toString();
+        return this;
+    }
+    
+    /**
      * The currency of the reserved instance. Specified using ISO 4217
      * standard (e.g., USD, JPY).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>USD
      *
      * @return The currency of the reserved instance. Specified using ISO 4217
      *         standard (e.g., USD, JPY).
+     *
+     * @see CurrencyCodeValues
      */
     public String getCurrencyCode() {
         return currencyCode;
@@ -614,9 +823,14 @@ public class ReservedInstances implements Serializable {
     /**
      * The currency of the reserved instance. Specified using ISO 4217
      * standard (e.g., USD, JPY).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>USD
      *
      * @param currencyCode The currency of the reserved instance. Specified using ISO 4217
      *         standard (e.g., USD, JPY).
+     *
+     * @see CurrencyCodeValues
      */
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
@@ -627,12 +841,17 @@ public class ReservedInstances implements Serializable {
      * standard (e.g., USD, JPY).
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>USD
      *
      * @param currencyCode The currency of the reserved instance. Specified using ISO 4217
      *         standard (e.g., USD, JPY).
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see CurrencyCodeValues
      */
     public ReservedInstances withCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
@@ -641,9 +860,52 @@ public class ReservedInstances implements Serializable {
     
     
     /**
+     * The currency of the reserved instance. Specified using ISO 4217
+     * standard (e.g., USD, JPY).
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>USD
+     *
+     * @param currencyCode The currency of the reserved instance. Specified using ISO 4217
+     *         standard (e.g., USD, JPY).
+     *
+     * @see CurrencyCodeValues
+     */
+    public void setCurrencyCode(CurrencyCodeValues currencyCode) {
+        this.currencyCode = currencyCode.toString();
+    }
+    
+    /**
+     * The currency of the reserved instance. Specified using ISO 4217
+     * standard (e.g., USD, JPY).
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>USD
+     *
+     * @param currencyCode The currency of the reserved instance. Specified using ISO 4217
+     *         standard (e.g., USD, JPY).
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see CurrencyCodeValues
+     */
+    public ReservedInstances withCurrencyCode(CurrencyCodeValues currencyCode) {
+        this.currencyCode = currencyCode.toString();
+        return this;
+    }
+    
+    /**
      * The Reserved Instance offering type.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
      *
      * @return The Reserved Instance offering type.
+     *
+     * @see OfferingTypeValues
      */
     public String getOfferingType() {
         return offeringType;
@@ -651,8 +913,13 @@ public class ReservedInstances implements Serializable {
     
     /**
      * The Reserved Instance offering type.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
      *
      * @param offeringType The Reserved Instance offering type.
+     *
+     * @see OfferingTypeValues
      */
     public void setOfferingType(String offeringType) {
         this.offeringType = offeringType;
@@ -662,17 +929,56 @@ public class ReservedInstances implements Serializable {
      * The Reserved Instance offering type.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
      *
      * @param offeringType The Reserved Instance offering type.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see OfferingTypeValues
      */
     public ReservedInstances withOfferingType(String offeringType) {
         this.offeringType = offeringType;
         return this;
     }
     
+    
+    /**
+     * The Reserved Instance offering type.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
+     *
+     * @param offeringType The Reserved Instance offering type.
+     *
+     * @see OfferingTypeValues
+     */
+    public void setOfferingType(OfferingTypeValues offeringType) {
+        this.offeringType = offeringType.toString();
+    }
+    
+    /**
+     * The Reserved Instance offering type.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Heavy Utilization, Medium Utilization, Light Utilization
+     *
+     * @param offeringType The Reserved Instance offering type.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see OfferingTypeValues
+     */
+    public ReservedInstances withOfferingType(OfferingTypeValues offeringType) {
+        this.offeringType = offeringType.toString();
+        return this;
+    }
     
     /**
      * The recurring charge tag assigned to the resource.
@@ -759,6 +1065,7 @@ public class ReservedInstances implements Serializable {
         if (getInstanceType() != null) sb.append("InstanceType: " + getInstanceType() + ",");
         if (getAvailabilityZone() != null) sb.append("AvailabilityZone: " + getAvailabilityZone() + ",");
         if (getStart() != null) sb.append("Start: " + getStart() + ",");
+        if (getEnd() != null) sb.append("End: " + getEnd() + ",");
         if (getDuration() != null) sb.append("Duration: " + getDuration() + ",");
         if (getUsagePrice() != null) sb.append("UsagePrice: " + getUsagePrice() + ",");
         if (getFixedPrice() != null) sb.append("FixedPrice: " + getFixedPrice() + ",");
@@ -783,6 +1090,7 @@ public class ReservedInstances implements Serializable {
         hashCode = prime * hashCode + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode()); 
         hashCode = prime * hashCode + ((getAvailabilityZone() == null) ? 0 : getAvailabilityZone().hashCode()); 
         hashCode = prime * hashCode + ((getStart() == null) ? 0 : getStart().hashCode()); 
+        hashCode = prime * hashCode + ((getEnd() == null) ? 0 : getEnd().hashCode()); 
         hashCode = prime * hashCode + ((getDuration() == null) ? 0 : getDuration().hashCode()); 
         hashCode = prime * hashCode + ((getUsagePrice() == null) ? 0 : getUsagePrice().hashCode()); 
         hashCode = prime * hashCode + ((getFixedPrice() == null) ? 0 : getFixedPrice().hashCode()); 
@@ -813,6 +1121,8 @@ public class ReservedInstances implements Serializable {
         if (other.getAvailabilityZone() != null && other.getAvailabilityZone().equals(this.getAvailabilityZone()) == false) return false; 
         if (other.getStart() == null ^ this.getStart() == null) return false;
         if (other.getStart() != null && other.getStart().equals(this.getStart()) == false) return false; 
+        if (other.getEnd() == null ^ this.getEnd() == null) return false;
+        if (other.getEnd() != null && other.getEnd().equals(this.getEnd()) == false) return false; 
         if (other.getDuration() == null ^ this.getDuration() == null) return false;
         if (other.getDuration() != null && other.getDuration().equals(this.getDuration()) == false) return false; 
         if (other.getUsagePrice() == null ^ this.getUsagePrice() == null) return false;

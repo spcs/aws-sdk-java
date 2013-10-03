@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.ec2.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -29,6 +31,9 @@ public class AvailabilityZone implements Serializable {
 
     /**
      * State of the Availability Zone.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>available
      */
     private String state;
 
@@ -78,8 +83,13 @@ public class AvailabilityZone implements Serializable {
     
     /**
      * State of the Availability Zone.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>available
      *
      * @return State of the Availability Zone.
+     *
+     * @see AvailabilityZoneState
      */
     public String getState() {
         return state;
@@ -87,8 +97,13 @@ public class AvailabilityZone implements Serializable {
     
     /**
      * State of the Availability Zone.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>available
      *
      * @param state State of the Availability Zone.
+     *
+     * @see AvailabilityZoneState
      */
     public void setState(String state) {
         this.state = state;
@@ -98,17 +113,56 @@ public class AvailabilityZone implements Serializable {
      * State of the Availability Zone.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>available
      *
      * @param state State of the Availability Zone.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
+     *
+     * @see AvailabilityZoneState
      */
     public AvailabilityZone withState(String state) {
         this.state = state;
         return this;
     }
     
+    
+    /**
+     * State of the Availability Zone.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>available
+     *
+     * @param state State of the Availability Zone.
+     *
+     * @see AvailabilityZoneState
+     */
+    public void setState(AvailabilityZoneState state) {
+        this.state = state.toString();
+    }
+    
+    /**
+     * State of the Availability Zone.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>available
+     *
+     * @param state State of the Availability Zone.
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     *
+     * @see AvailabilityZoneState
+     */
+    public AvailabilityZone withState(AvailabilityZoneState state) {
+        this.state = state.toString();
+        return this;
+    }
     
     /**
      * Name of the region in which this zone resides.

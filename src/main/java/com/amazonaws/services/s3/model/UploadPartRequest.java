@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.InputStream;
 
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.event.ProgressListener;
 
 /**
  * Contains the parameters used for the UploadPart operation on Amazon S3.
@@ -78,10 +79,10 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
     private long fileOffset;
 
     /**
-     * The optional progress listener for receiving updates about object upload
+     * The optional progress listener for receiving updates about object download
      * status.
      */
-    private ProgressListener progressListener;
+    private ProgressListener generalProgressListener;
 
 	/**
 	 * Allows the caller to indicate if this is the last part being uploaded in
@@ -456,10 +457,13 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * upload status.
      *
      * @param progressListener
-     *            The new progress listener.
+     *            The legacy progress listener that is used exclusively for Amazon S3 client.
+     * 
+     * @deprecated use {@link #setGeneralProgressListener(ProgressListener)} instead.
      */
-    public void setProgressListener(ProgressListener progressListener) {
-        this.progressListener = progressListener;
+    @Deprecated
+    public void setProgressListener(com.amazonaws.services.s3.model.ProgressListener progressListener) {
+        this.generalProgressListener = new LegacyS3ProgressListener(progressListener);
     }
 
     /**
@@ -468,9 +472,16 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      *
      * @return the optional progress listener for receiving updates about object
      *         upload status.
+     * 
+     * @deprecated use {@link #getGeneralProgressListener()} instead.
      */
-    public ProgressListener getProgressListener() {
-        return progressListener;
+    @Deprecated
+    public com.amazonaws.services.s3.model.ProgressListener getProgressListener() {
+        if (generalProgressListener instanceof LegacyS3ProgressListener) {
+            return ((LegacyS3ProgressListener)generalProgressListener).unwrap();
+        } else {
+             return null;
+        }
     }
 
     /**
@@ -479,51 +490,91 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * calls can be chained together.
      *
      * @param progressListener
-     *            The new progress listener.
+     *            The legacy progress listener that is used exclusively for Amazon S3 client.
      *
      * @return This updated UploadPartRequest object.
+     * 
+     * @deprecated use {@link #withGeneralProgressListener(ProgressListener)} instead.
      */
-    public UploadPartRequest withProgressListener(ProgressListener progressListener) {
+    @Deprecated
+    public UploadPartRequest withProgressListener(com.amazonaws.services.s3.model.ProgressListener progressListener) {
         setProgressListener(progressListener);
         return this;
     }
 
-	/**
-	 * Returns true if the creator of this request has indicated this part is
-	 * the last part being uploaded in a multipart upload.
-	 *
-	 * @return True if the creator of this request has indicated this part is
-	 *         the last part being uploaded in a multipart upload.
-	 */
+    /**
+     * Returns true if the creator of this request has indicated this part is
+     * the last part being uploaded in a multipart upload.
+     *
+     * @return True if the creator of this request has indicated this part is
+     *         the last part being uploaded in a multipart upload.
+     */
     public boolean isLastPart() {
-		return isLastPart;
-	}
+        return isLastPart;
+    }
 
-	/**
-	 * Marks this part as the last part being uploaded in a multipart upload.
-	 *
-	 * @param isLastPart
-	 *            Whether or not this is the last part being uploaded in a
-	 *            multipart upload.
-	 */
-	public void setLastPart(boolean isLastPart) {
-		this.isLastPart = isLastPart;
-	}
+    /**
+    * Marks this part as the last part being uploaded in a multipart upload.
+    *
+    * @param isLastPart
+    *            Whether or not this is the last part being uploaded in a
+    *            multipart upload.
+    */
+    public void setLastPart(boolean isLastPart) {
+        this.isLastPart = isLastPart;
+    }
 
-	/**
-	 * Marks this part as the last part being uploaded in a multipart upload,
-	 * and returns this updated request object so that additional method calls
-	 * can be chained together.
-	 *
-	 * @param isLastPart
-	 *            Whether or not this is the last part being uploaded in a
-	 *            multipart upload.
-	 *
-	 * @return This updated request object so that additional method calls can
-	 *         be chained together.
-	 */
-	public UploadPartRequest withLastPart(boolean isLastPart) {
-		setLastPart(isLastPart);
-		return this;
-	}
+    /**
+     * Marks this part as the last part being uploaded in a multipart upload,
+     * and returns this updated request object so that additional method calls
+     * can be chained together.
+     *
+     * @param isLastPart
+     *            Whether or not this is the last part being uploaded in a
+     *            multipart upload.
+     *
+     * @return This updated request object so that additional method calls can
+     *         be chained together.
+     */
+    public UploadPartRequest withLastPart(boolean isLastPart) {
+        setLastPart(isLastPart);
+        return this;
+    }
+
+    /**
+     * Sets the optional progress listener for receiving updates about object
+     * download status.
+     *
+     * @param generalProgressListener
+     *            The new progress listener.
+     */
+    public void setGeneralProgressListener(ProgressListener generalProgressListener) {
+        this.generalProgressListener = generalProgressListener;
+    }
+
+    /**
+     * Returns the optional progress listener for receiving updates about object
+     * download status.
+     *
+     * @return the optional progress listener for receiving updates about object
+     *          download status.
+     */
+    public ProgressListener getGeneralProgressListener() {
+        return generalProgressListener;
+    }
+
+    /**
+     * Sets the optional progress listener for receiving updates about object
+     * upload status, and returns this updated object so that additional method
+     * calls can be chained together.
+     *
+     * @param generalProgressListener
+     *            The new progress listener.
+     *
+     * @return This updated UploadPartRequest object.
+     */
+    public UploadPartRequest withGeneralProgressListener(ProgressListener progressListener) {
+        setGeneralProgressListener(progressListener);
+        return this;
+    }
 }

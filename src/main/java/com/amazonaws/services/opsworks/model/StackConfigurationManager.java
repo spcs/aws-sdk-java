@@ -13,7 +13,9 @@
  * permissions and limitations under the License.
  */
 package com.amazonaws.services.opsworks.model;
+
 import java.io.Serializable;
+
 
 /**
  * <p>
@@ -30,7 +32,7 @@ public class StackConfigurationManager implements Serializable {
     /**
      * The Chef version. This parameter must be set to "0.9" or "11.4". The
      * default value is "0.9". However, we expect to change the default value
-     * to "11.4" in late August 2013.
+     * to "11.4" in September 2013.
      */
     private String version;
 
@@ -71,11 +73,11 @@ public class StackConfigurationManager implements Serializable {
     /**
      * The Chef version. This parameter must be set to "0.9" or "11.4". The
      * default value is "0.9". However, we expect to change the default value
-     * to "11.4" in late August 2013.
+     * to "11.4" in September 2013.
      *
      * @return The Chef version. This parameter must be set to "0.9" or "11.4". The
      *         default value is "0.9". However, we expect to change the default value
-     *         to "11.4" in late August 2013.
+     *         to "11.4" in September 2013.
      */
     public String getVersion() {
         return version;
@@ -84,11 +86,11 @@ public class StackConfigurationManager implements Serializable {
     /**
      * The Chef version. This parameter must be set to "0.9" or "11.4". The
      * default value is "0.9". However, we expect to change the default value
-     * to "11.4" in late August 2013.
+     * to "11.4" in September 2013.
      *
      * @param version The Chef version. This parameter must be set to "0.9" or "11.4". The
      *         default value is "0.9". However, we expect to change the default value
-     *         to "11.4" in late August 2013.
+     *         to "11.4" in September 2013.
      */
     public void setVersion(String version) {
         this.version = version;
@@ -97,13 +99,13 @@ public class StackConfigurationManager implements Serializable {
     /**
      * The Chef version. This parameter must be set to "0.9" or "11.4". The
      * default value is "0.9". However, we expect to change the default value
-     * to "11.4" in late August 2013.
+     * to "11.4" in September 2013.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param version The Chef version. This parameter must be set to "0.9" or "11.4". The
      *         default value is "0.9". However, we expect to change the default value
-     *         to "11.4" in late August 2013.
+     *         to "11.4" in September 2013.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
